@@ -1,0 +1,14 @@
+data/audio_data/audio/
+data/audio_data/checkpoints/
+data/audio_data/generated_audio/
+data/celebfaces-attributes-celeba-dataset/
+data/generated_image/
+src/notebooks/*.py
+src/notebooks/*.ipynb
+!src/notebooks/v1.ipynb
+src/audio_diffusion_clean.py
+src/audio_diffusion_template.py
+data/papers/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
