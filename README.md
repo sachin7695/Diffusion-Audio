@@ -7,7 +7,7 @@ This repository contains implementations of Diffusion Models programmed from scr
 - `src/`
   - `notebooks/v1.ipynb`: The original notebook walking through the math and implementation of DDPM for image generation (CelebA dataset).
   - `diffusion_models.py`: Modularized PyTorch code containing the core network (`UNET`), the scheduling components (`Sampler`), `SelfAttention`, `TransformerBlocks`, and custom positional `SinusoidalTimeEmbeddings`.
-  - `audio_diffusion_clean.py`: An end-to-end training and inference script that adapts the 2D UNET to generate Audio by representing sound as Mel-Spectrograms and vocoding via Griffin-Lim.
+  - `audio_diffusion.py`: An end-to-end training and inference script that adapts the 2D UNET to generate Audio by representing sound as Mel-Spectrograms and vocoding via Griffin-Lim.
 
 - `data/`
   - `download_emilia_en.py`: A script to stream and download the Emilia-EN audio dataset from HuggingFace to use as raw training data.
