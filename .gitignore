@@ -8,6 +8,8 @@ src/notebooks/*.ipynb
 !src/notebooks/v1.ipynb
 src/audio_diffusion_clean.py
 src/audio_diffusion_template.py
+src/audio_diffusion.py 
+src/inference_bigvgan.py
 data/papers/
 __pycache__/
 *.pyc
