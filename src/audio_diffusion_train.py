@@ -19,30 +19,30 @@ from diffusion_models import Diffusion, Sampler
 
 class AudioConfig:
     SAMPLE_RATE = 24000
-    N_MELS      = 128       # matches 20k checkpoint
-    MAX_FRAMES  = 128       # matches 20k checkpoint
+    N_MELS      = 128       
+    MAX_FRAMES  = 128       
 
     AUDIO_SECONDS  = 5
-    TARGET_SAMPLES = int(SAMPLE_RATE * AUDIO_SECONDS)   # 120,000
+    TARGET_SAMPLES = int(SAMPLE_RATE * AUDIO_SECONDS)   
 
-    HOP_LENGTH = 944        # matches 20k checkpoint — DO NOT change
+    HOP_LENGTH = 944        
     N_FFT      = 2048
 
     BATCH_SIZE = 8
     LR         = 5e-5       # low LR for fine-tuning from a converged checkpoint
 
     RESUME_CKPT = "/data/TTS/sachin-data/exp/Diffusion-Audio/data/audio_data/checkpoints/diffusion_20000.pth"
-    TRAIN_STEPS = 60000     # 20k already done → 40k new steps
+    TRAIN_STEPS = 60000     
 
     DIFFUSION_STEPS = 1000
     EVAL_INTERVAL   = 1000
     EVAL_BATCHES    = 20
     GEN_STEPS       = 1000
 
-    GL_ITERS = 128          # more iterations = cleaner phase reconstruction
+    GL_ITERS = 128          
 
-    DB_MIN = -48.8   # 1st percentile across 12,612 files
-    DB_MAX = 50.6    # 99th percentile across 12,612 files
+    DB_MIN = -48.8   
+    DB_MAX = 50.6    
 
 
     GENERATED_DIR = "/data/TTS/sachin-data/exp/Diffusion-Audio/data/audio_data/generated_audio"
@@ -50,10 +50,10 @@ class AudioConfig:
     PLOTS_DIR     = "/data/TTS/sachin-data/exp/Diffusion-Audio/data/audio_data/plots"
 
 
-# ──────────────────────────────────────────────────────────
+
 # Transforms — MUST match exactly what 20k ckpt was trained on
 # NO norm/mel_scale changes — those would break the resumed model
-# ──────────────────────────────────────────────────────────
+
 mel_transform = T.MelSpectrogram(
     sample_rate=AudioConfig.SAMPLE_RATE,
     n_fft=AudioConfig.N_FFT,
@@ -189,9 +189,8 @@ def plot_losses(train_steps, train_losses, eval_steps, eval_losses,
     print(f"  Plots saved -> {save_dir}")
 
 
-# ──────────────────────────────────────────────────────────
 # Eval loss
-# ──────────────────────────────────────────────────────────
+
 @torch.no_grad()
 def compute_eval_loss(model, loader, sampler, loss_fn, device, n_batches=20):
     model.eval()
@@ -208,9 +207,7 @@ def compute_eval_loss(model, loader, sampler, loss_fn, device, n_batches=20):
     return total / max(count, 1)
 
 
-# ──────────────────────────────────────────────────────────
 # Generation
-# ──────────────────────────────────────────────────────────
 def generate_sample(model, sampler, device, step):
     model.eval()
     print(f"\n  Generating 5s audio at step {step} ...")
